@@ -4,7 +4,10 @@ import {
   ElButton,
   ElMessage,
   ElNotification,
-  ElMessageBox
+  ElMessageBox,
+  ElMenu,
+  ElMenuItem,
+  ElSubmenu
 } from 'element-plus'
 import 'element-plus/lib/theme-chalk/index.css'
 // Element Plus 组件内部默认使用英语
@@ -20,7 +23,15 @@ export default (app: App): void => {
   locale(lang)
 
   // 按需导入组件列表
-  const components = [ElButton, ElMessage, ElNotification, ElMessageBox]
+  const components = [
+    ElButton,
+    ElMessage,
+    ElNotification,
+    ElMessageBox,
+    ElMenu,
+    ElMenuItem,
+    ElSubmenu
+  ]
 
   components.forEach(component => {
     app.component(component.name, component)

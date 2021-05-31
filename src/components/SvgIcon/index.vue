@@ -1,16 +1,11 @@
 <template>
-  <!-- 如果iconClass是带协议的图标链接 则通过style属性方式渲染-->
   <div
     class="svg-icon svg-external-icon"
     v-if="isExt"
     :style="styleExternalIcon"
     v-bind="$attrs"
   ></div>
-  <!-- SVG icon 通过名称使用 -->
   <svg v-else :class="svgClass" aria-hidden="true" v-bind="$attrs">
-    <!-- 
-       SVG中的use元素可以调用其他SVG文件的元素，<use xlink:href="#symbolId"></use>
-    -->
     <use :xlink:href="iconName" />
   </svg>
 </template>
