@@ -5,7 +5,9 @@
     </div>
     <div class="main-container">
       <div class="header">
-        <div class="navbar">navbar</div>
+        <div class="navbar">
+          <navbar></navbar>
+        </div>
         <div class="tags-view">tagsview</div>
       </div>
       <!-- AppMain router-view -->
@@ -18,11 +20,13 @@
 import { defineComponent } from 'vue'
 import Sidebar from './components/Sidebar/index.vue'
 import AppMain from './components/AppMain.vue'
+import Navbar from './Navbar.vue'
 
 export default defineComponent({
   components: {
     Sidebar,
-    AppMain
+    AppMain,
+    Navbar
   }
 })
 </script>

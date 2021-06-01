@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store'
+import store, { key } from './store'
 import installElementPlus from './plugins/element'
 import 'normalize.css/normalize.css'
 import '@/styles/index.scss'
@@ -11,7 +11,7 @@ import { ElMessage, ElNotification, ElMessageBox } from 'element-plus'
 const app = createApp(App)
 
 app
-  .use(store)
+  .use(store, key)
   .use(router)
   .use(installElementPlus)
   .use(initSvgIcon)

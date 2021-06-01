@@ -72,8 +72,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         component: () =>
           import(/* webpackChunkName: "user" */ '@/views/system/user.vue'),
         meta: {
-          title: 'User Management',
-          activeMenu: '/documentation/index'
+          title: 'User Management'
         }
       }
     ]
