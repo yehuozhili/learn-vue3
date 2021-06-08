@@ -20,6 +20,7 @@ module.exports = {
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/ban-ts-ignore': 'off',
     'no-trailing-spaces': 'off',
-    'no-unused-expressions': 'off'
+    'no-unused-expressions': 'off',
+    '@typescript-eslint/no-extra-semi': 'off'
   }
 }

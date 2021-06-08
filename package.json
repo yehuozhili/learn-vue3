@@ -12,6 +12,7 @@
     "element-plus": "^1.0.2-beta.28",
     "normalize.css": "^8.0.1",
     "path-to-regexp": "^6.2.0",
+    "screenfull": "^5.1.0",
     "svg-sprite-loader": "^6.0.6",
     "tslib": "^2.2.0",
     "vue": "^3.0.0",

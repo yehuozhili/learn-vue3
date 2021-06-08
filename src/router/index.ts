@@ -17,7 +17,9 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
           ),
         meta: {
           title: 'Documentation',
-          icon: 'documentation'
+          icon: 'documentation',
+          hidden: false,
+          caches: true
         }
       }
     ]
@@ -35,6 +37,8 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         meta: {
           title: 'Guide',
           icon: 'guide'
+          // 当guide路由激活时高亮选中的是 documentation/index菜单
+          // activeMenu: '/documentation/index'
         }
       }
     ]
@@ -46,29 +50,33 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
     meta: {
       title: 'System',
       icon: 'lock',
-      alwaysShow: true
+      alwaysShow: true // 根路由始终显示 哪怕只有一个子路由
     },
     children: [
       {
         path: 'menu',
+        name: 'Menu Managgement',
         component: () =>
           import(/* webpackChunkName: "menu" */ '@/views/system/menu.vue'),
         meta: {
           title: 'Menu Management',
-          hidden: true
+          hidden: false,
+          breadcrumb: false
         }
       },
       {
         path: 'role',
+        name: 'Role Managgement',
         component: () =>
           import(/* webpackChunkName: "role" */ '@/views/system/role.vue'),
         meta: {
           title: 'Role Management',
-          hidden: true
+          hidden: false
         }
       },
       {
         path: 'user',
+        name: 'User Managgement',
         component: () =>
           import(/* webpackChunkName: "user" */ '@/views/system/user.vue'),
         meta: {
@@ -76,6 +84,29 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         }
       }
     ]
+  },
+  {
+    // 外链路由
+    path: '/external-link',
+    component: Layout,
+    children: [
+      {
+        path: 'https://www.baidu.com/',
+        redirect: '/',
+        meta: {
+          title: 'External Link',
+          icon: 'link'
+        }
+      }
+    ]
+  },
+  {
+    // 404一定放在要在最后面
+    path: '/:pathMatch(.*)*',
+    redirect: '/404',
+    meta: {
+      hidden: true
+    }
   }
 ]
 
@@ -94,40 +125,49 @@ export const constantRoutes: Array<RouteRecordRaw> = [
           ),
         meta: {
           title: 'Dashboard',
-          icon: 'dashboard'
+          // icon: 'dashboard'
+          icon: 'el-icon-platform-eleme',
+          affix: true
         }
       }
     ]
   },
   {
-    // 外链路由
-    path: '/external-link',
+    path: '/redirect',
     component: Layout,
+    meta: {
+      hidden: true
+    },
     children: [
       {
-        path: 'https://www.baidu.com/',
-        redirect: '/',
-        meta: {
-          title: 'External Link',
-          icon: 'el-icon-platform-eleme'
-        }
+        // 带参数的动态路由正则匹配 文档说明
+        // https://next.router.vuejs.org/zh/guide/essentials/route-matching-syntax.html#%E5%8F%AF%E9%87%8D%E5%A4%8D%E7%9A%84%E5%8F%82%E6%95%B0
+        path: '/redirect/:path(.*)', // 要匹配多级路由 应该加*号
+        component: () => import('@/views/redirect/index.vue')
       }
     ]
   },
   {
-    path: '/external-link2',
+    path: '/401',
     component: Layout,
     children: [
       {
-        path: 'https://www.baidu.com/',
-        redirect: '/',
+        path: '',
+        component: () => import('@/views/error-page/401.vue'),
         meta: {
-          title: 'External Link2',
-          icon: 'link',
+          title: '401',
+          icon: '404',
           hidden: true
         }
       }
     ]
+  },
+  {
+    path: '/404',
+    component: () => import('@/views/error-page/404.vue'),
+    meta: {
+      hidden: true // 404 hidden掉
+    }
   }
 ]
 
